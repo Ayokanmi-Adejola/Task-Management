@@ -39,12 +39,12 @@ Visit the live application: [https://ayokanmi-adejola-kanban.netlify.app/](https
 
 1. Clone the repository:
 ```bash
-git clone <YOUR_GIT_URL>
+git clone <https://github.com/Ayokanmi-Adejola/Task-Management.git>
 ```
 
 2. Navigate to the project directory:
 ```bash
-cd <YOUR_PROJECT_NAME>
+cd <KANBAN>
 ```
 
 3. Install dependencies:
