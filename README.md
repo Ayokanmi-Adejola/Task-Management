@@ -2,9 +2,7 @@
 
 A modern, responsive Kanban board application built with React and TypeScript, featuring a beautiful UI powered by shadcn/ui and Tailwind CSS.
 
-## 🔗 Live Demo
 
-Visit the live application: [https://ayokanmi-adejola-kanban.netlify.app/](https://ayokanmi-adejola-kanban.netlify.app/)
 
 ## ✨ Features
 
