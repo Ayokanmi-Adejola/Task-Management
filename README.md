@@ -42,7 +42,7 @@ git clone <https://github.com/Ayokanmi-Adejola/Task-Management.git>
 
 2. Navigate to the project directory:
 ```bash
-cd <KANBAN>
+cd <Task-Management>
 ```
 
 3. Install dependencies:
@@ -76,3 +76,4 @@ The application will be available at `http://localhost:8081`
 ## 📝 License
 
 This project is open source and available under the MIT License.
+
