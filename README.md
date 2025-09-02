@@ -1,4 +1,4 @@
-# Kanban Task Management App
+# Kanban Task Management
 
 A modern, responsive Kanban board application built with React and TypeScript, featuring a beautiful UI powered by shadcn/ui and Tailwind CSS.
 
@@ -74,3 +74,4 @@ The application will be available at `http://localhost:8081`
 3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
+
