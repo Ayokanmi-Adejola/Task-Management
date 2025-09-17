@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
@@ -72,7 +71,6 @@ const FilterTasksDialog: React.FC<FilterTasksDialogProps> = ({
       <DialogContent className={cn(
         "sm:max-w-md p-0 gap-0 shadow-xl border-none bg-gradient-to-b from-background to-muted/20",
         "duration-200 transition-all",
-        isMobile && "w-[95%] rounded-2xl"
       )}>
         <DialogHeader className="p-6 pb-2">
           <DialogTitle className={cn(
