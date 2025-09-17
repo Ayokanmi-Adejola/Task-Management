@@ -1,70 +1,80 @@
-# Welcome to your Lovable project
+# Kanban Task Management App
 
-## Project info
+A modern, responsive Kanban board application built with React and TypeScript, featuring a beautiful UI powered by shadcn/ui and Tailwind CSS.
 
-**URL**: https://lovable.dev/projects/9235dc25-9ced-4cc2-8457-8ac5033514fc
+## 🔗 Live Demo
 
-## How can I edit this code?
+Visit the live application: [https://ayokanmi-adejola-kanban.netlify.app/](https://ayokanmi-adejola-kanban.netlify.app/)
 
-There are several ways of editing your application.
+## ✨ Features
 
-**Use Lovable**
+- **Drag and Drop Task Management**: Intuitive task organization across columns
+- **User Authentication**: Secure user accounts and personalized task management
+- **Responsive Design**: Fully responsive layout that works on desktop and mobile devices
+- **Dark/Light Theme**: Toggle between dark and light modes
+- **Real-time Updates**: Instant feedback with toast notifications
+- **Task Filtering**: Advanced filtering capabilities for better task organization
+- **Local Storage**: Persistent data storage across browser sessions
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/9235dc25-9ced-4cc2-8457-8ac5033514fc) and start prompting.
+## 🛠️ Tech Stack
 
-Changes made via Lovable will be committed automatically to this repo.
+- [Vite](https://vitejs.dev/) - Next Generation Frontend Tooling
+- [React](https://reactjs.org/) - UI Library
+- [TypeScript](https://www.typescriptlang.org/) - Type Safety
+- [Tailwind CSS](https://tailwindcss.com/) - Styling
+- [shadcn/ui](https://ui.shadcn.com/) - UI Components
+- [React Query](https://tanstack.com/query/latest) - Data Fetching
+- [React Router](https://reactrouter.com/) - Routing
+- [Zod](https://zod.dev/) - Schema Validation
+- [React Hook Form](https://react-hook-form.com/) - Form Management
 
-**Use your preferred IDE**
+## 🚀 Getting Started
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Prerequisites
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- Node.js (v14 or higher)
+- npm or yarn
 
-Follow these steps:
+### Installation
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
+1. Clone the repository:
+```bash
 git clone <YOUR_GIT_URL>
+```
 
-# Step 2: Navigate to the project directory.
+2. Navigate to the project directory:
+```bash
 cd <YOUR_PROJECT_NAME>
+```
 
-# Step 3: Install the necessary dependencies.
-npm i
+3. Install dependencies:
+```bash
+npm install
+```
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+4. Start the development server:
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+The application will be available at `http://localhost:8081`
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 📦 Available Scripts
 
-**Use GitHub Codespaces**
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run build:dev` - Build for development
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## 🤝 Contributing
 
-## What technologies are used for this project?
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-This project is built with .
+## 📝 License
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/9235dc25-9ced-4cc2-8457-8ac5033514fc) and click on Share -> Publish.
-
-## I want to use a custom domain - is that possible?
-
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
-"# erc" 
+This project is open source and available under the MIT License.

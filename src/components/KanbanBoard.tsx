@@ -9,8 +9,10 @@ import EditTaskDialog from './EditTaskDialog';
 import FilterTasksDialog, { TaskFilters } from './FilterTasksDialog';
 import { toast } from 'sonner';
 import { Button } from './ui/button';
-import { Filter, Plus, Trash } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Filter, Plus, Trash } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
+import { useIsMobile } from '@/hooks/use-mobile';
+import { cn } from '@/lib/utils';
 
 const COLUMNS: Column[] = [
   { id: 'todo', title: 'To Do', color: 'bg-gray-400' },
@@ -108,7 +110,11 @@ const DEMO_TASKS: Task[] = [
   }
 ];
 
-const KanbanBoard: React.FC = () => {
+interface KanbanBoardProps {
+  searchQuery?: string;
+}
+
+const KanbanBoard: React.FC<KanbanBoardProps> = ({ searchQuery: externalSearchQuery }) => {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [filteredTasks, setFilteredTasks] = useState<Task[]>([]);
   const [editingTask, setEditingTask] = useState<Task | null>(null);
@@ -126,6 +132,8 @@ const KanbanBoard: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const { user, isAuthenticated } = useAuth();
   const [isFirstLoad, setIsFirstLoad] = useState(true);
+  const isMobile = useIsMobile();
+  const [activeColumnIndex, setActiveColumnIndex] = useState(0);
 
   const getAvailableTags = () => {
     const allTags = tasks
@@ -144,13 +152,13 @@ const KanbanBoard: React.FC = () => {
   useEffect(() => {
     if (user?.id) {
       let savedTasks = getTasksFromLocalStorage(user.id);
-      
+
       if (savedTasks.length === 0 && isFirstLoad) {
         savedTasks = DEMO_TASKS;
         saveTasksToLocalStorage(savedTasks, user.id);
         setIsFirstLoad(false);
       }
-      
+
       setTasks(savedTasks);
     } else {
       setTasks(DEMO_TASKS);
@@ -163,17 +171,24 @@ const KanbanBoard: React.FC = () => {
     }
   }, [tasks, user]);
 
+  // Update internal search query when external one changes
+  useEffect(() => {
+    if (externalSearchQuery !== undefined) {
+      setSearchQuery(externalSearchQuery);
+    }
+  }, [externalSearchQuery]);
+
   useEffect(() => {
     let result = [...tasks];
 
     if (filters.tags.length > 0) {
-      result = result.filter(task => 
+      result = result.filter(task =>
         task.tags && task.tags.some(tag => filters.tags.includes(tag))
       );
     }
 
     if (filters.assignees.length > 0) {
-      result = result.filter(task => 
+      result = result.filter(task =>
         task.assignees && task.assignees.some(assignee => filters.assignees.includes(assignee))
       );
     }
@@ -182,11 +197,11 @@ const KanbanBoard: React.FC = () => {
       result = result.filter(task => task.status !== 'done');
     }
 
-    if (searchQuery) {
-      const query = searchQuery.toLowerCase();
-      result = result.filter(task => 
-        task.title.toLowerCase().includes(query) || 
-        task.description.toLowerCase().includes(query)
+    const query = searchQuery.toLowerCase();
+    if (query) {
+      result = result.filter(task =>
+        task.title.toLowerCase().includes(query) ||
+        (task.description && task.description.toLowerCase().includes(query))
       );
     }
 
@@ -227,7 +242,7 @@ const KanbanBoard: React.FC = () => {
       toast.error('Please log in to manage tasks');
       return;
     }
-    
+
     setTasks([]);
     clearDemoTasks(user.id);
     toast.success('All tasks cleared successfully');
@@ -253,7 +268,7 @@ const KanbanBoard: React.FC = () => {
 
   const handleDrop = (e: React.DragEvent<HTMLDivElement>, status: TaskStatus) => {
     e.preventDefault();
-    
+
     if (draggedTask) {
       const updatedTasks = tasks.map((task) => {
         if (task.id === draggedTask) {
@@ -261,7 +276,7 @@ const KanbanBoard: React.FC = () => {
         }
         return task;
       });
-      
+
       setTasks(updatedTasks);
       setDraggedTask(null);
       setDraggingOver(null);
@@ -290,33 +305,49 @@ const KanbanBoard: React.FC = () => {
     setSearchQuery(e.target.value);
   };
 
+  // Handle column navigation for mobile view
+  const nextColumn = () => {
+    if (activeColumnIndex < COLUMNS.length - 1) {
+      setActiveColumnIndex(activeColumnIndex + 1);
+    }
+  };
+
+  const prevColumn = () => {
+    if (activeColumnIndex > 0) {
+      setActiveColumnIndex(activeColumnIndex - 1);
+    }
+  };
+
   return (
     <div className="h-full flex flex-col">
-      <div className="flex justify-between items-center mb-6">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-0 mb-4 sm:mb-6">
         <div>
-          <h2 className="text-2xl font-bold">Overview</h2>
-          <p className="text-muted-foreground text-sm">View and manage your tasks</p>
+          <h2 className="text-xl sm:text-2xl font-bold">Overview</h2>
+          <p className="text-muted-foreground text-xs sm:text-sm">View and manage your tasks</p>
         </div>
-        <div className="flex gap-3">
+        <div className="flex flex-wrap gap-2 sm:gap-3 w-full sm:w-auto justify-start sm:justify-end">
           {isAuthenticated && (
-            <Button 
-              variant="outline" 
-              className="gap-2 text-destructive hover:bg-destructive/10"
+            <Button
+              variant="outline"
+              size={isMobile ? "sm" : "default"}
+              className="gap-1 sm:gap-2 text-destructive hover:bg-destructive/10 text-xs sm:text-sm"
               onClick={handleClearAllTasks}
             >
-              <Trash className="h-4 w-4" />
-              Clear All Tasks
+              <Trash className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+              {isMobile ? "Clear" : "Clear All Tasks"}
             </Button>
           )}
-          <Button 
-            variant="outline" 
-            className="gap-2"
+          <Button
+            variant="outline"
+            size={isMobile ? "sm" : "default"}
+            className="gap-1 sm:gap-2 text-xs sm:text-sm"
             onClick={() => setFilterDialogOpen(true)}
           >
-            <Filter className="h-4 w-4" />
-            Filter Tasks
+            <Filter className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+            {isMobile ? "Filter" : "Filter Tasks"}
           </Button>
-          <Button 
+          <Button
+            size={isMobile ? "sm" : "default"}
             onClick={() => {
               if (!isAuthenticated) {
                 toast.error('Please log in to create tasks');
@@ -325,37 +356,75 @@ const KanbanBoard: React.FC = () => {
               setCreateInColumn('todo');
               setCreateTaskOpen(true);
             }}
-            className="gap-2"
+            className="gap-1 sm:gap-2 text-xs sm:text-sm"
           >
-            <Plus className="h-4 w-4" />
-            Create Task
+            <Plus className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+            {isMobile ? "Create" : "Create Task"}
           </Button>
         </div>
       </div>
-      
-      <div className="flex-1 flex flex-col md:flex-row gap-6 overflow-hidden">
-        {COLUMNS.map((column) => {
+
+      {/* Mobile Column Navigation */}
+      {isMobile && (
+        <div className="flex items-center justify-between mb-2 bg-gray-50 dark:bg-gray-900/50 p-2 rounded-md">
+          <Button
+            variant="ghost"
+            size="sm"
+            className="p-1 h-8 w-8 dark:hover:bg-gray-800"
+            onClick={prevColumn}
+            disabled={activeColumnIndex === 0}
+          >
+            <ChevronLeft className="h-5 w-5" />
+          </Button>
+          <span className="text-sm font-medium dark:text-gray-200">
+            {COLUMNS[activeColumnIndex].title} ({getColumnTasks(COLUMNS[activeColumnIndex].id).length})
+          </span>
+          <Button
+            variant="ghost"
+            size="sm"
+            className="p-1 h-8 w-8 dark:hover:bg-gray-800"
+            onClick={nextColumn}
+            disabled={activeColumnIndex === COLUMNS.length - 1}
+          >
+            <ChevronRight className="h-5 w-5" />
+          </Button>
+        </div>
+      )}
+
+      <div className="flex-1 flex flex-col md:flex-row gap-4 sm:gap-6 overflow-hidden">
+        {COLUMNS.map((column, index) => {
           const columnTasks = getColumnTasks(column.id);
-          
+
           return (
-            <div 
+            <div
               key={column.id}
-              className="flex-1 min-w-[280px] flex flex-col max-h-full"
+              className={cn(
+                "flex-1 min-w-[280px] flex flex-col max-h-full",
+                // On mobile, only show the active column
+                isMobile && index !== activeColumnIndex && "hidden"
+              )}
             >
-              <ColumnHeader 
-                title={column.title} 
-                count={columnTasks.length} 
-                status={column.id}
-                color={column.color}
-              />
-              
+              {!isMobile && (
+                <ColumnHeader
+                  title={column.title}
+                  count={columnTasks.length}
+                  status={column.id}
+                  color={column.color}
+                />
+              )}
+
               <div
-                className={`flex-1 p-2 rounded-lg bg-gray-50 overflow-y-auto flex flex-col gap-2 ${
-                  draggingOver === column.id ? 'column-drop-active' : ''
-                }`}
+                className={cn(
+                  "flex-1 p-2 rounded-lg overflow-y-auto flex flex-col gap-2",
+                  "bg-gray-50 dark:bg-gray-900/50",
+                  draggingOver === column.id && 'column-drop-active'
+                )}
                 onDragOver={(e) => handleDragOver(e, column.id)}
                 onDragLeave={handleDragLeave}
                 onDrop={(e) => handleDrop(e, column.id)}
+                style={{
+                  minHeight: isMobile ? '70vh' : 'auto'
+                }}
               >
                 {columnTasks.map((task, index) => (
                   <div
@@ -363,7 +432,7 @@ const KanbanBoard: React.FC = () => {
                     draggable
                     onDragStart={() => handleDragStart(task.id)}
                     onDragEnd={handleDragEnd}
-                    style={{ 
+                    style={{
                       animationDelay: `${index * 0.05}s`,
                     }}
                   >
@@ -388,23 +457,24 @@ const KanbanBoard: React.FC = () => {
                     />
                   </div>
                 ))}
-                
+
                 {columnTasks.length === 0 && (
                   <div className="flex-1 flex items-center justify-center p-4">
-                    <p className="text-xs text-muted-foreground italic">
+                    <p className="text-xs text-muted-foreground dark:text-gray-400 italic">
                       Drop tasks here
                     </p>
                   </div>
                 )}
               </div>
-              
-              <div className="mt-3">
-                <Button 
-                  variant="ghost" 
-                  className="w-full h-9 gap-1 text-muted-foreground hover:text-foreground group transition-all flex items-center justify-center"
+
+              <div className="mt-2 sm:mt-3">
+                <Button
+                  variant="ghost"
+                  size={isMobile ? "sm" : "default"}
+                  className="w-full h-8 sm:h-9 gap-1 text-muted-foreground hover:text-foreground dark:hover:text-gray-300 dark:hover:bg-gray-800/50 group transition-all flex items-center justify-center text-xs sm:text-sm"
                   onClick={() => openCreateTaskDialog(column.id)}
                 >
-                  <Plus className="h-4 w-4 group-hover:scale-110 transition-transform" />
+                  <Plus className="h-3.5 w-3.5 sm:h-4 sm:w-4 group-hover:scale-110 transition-transform" />
                   <span>Add Task</span>
                 </Button>
               </div>
@@ -419,7 +489,7 @@ const KanbanBoard: React.FC = () => {
         onOpenChange={setEditDialogOpen}
         onUpdate={handleUpdateTask}
       />
-      
+
       <CreateTaskDialog
         status={createInColumn}
         open={createTaskOpen}

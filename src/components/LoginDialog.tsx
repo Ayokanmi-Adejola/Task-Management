@@ -6,6 +6,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useAuth } from '@/contexts/AuthContext';
 import { toast } from 'sonner';
+import { useIsMobile } from '@/hooks/use-mobile';
+import { cn } from '@/lib/utils';
 
 interface LoginDialogProps {
   open: boolean;
@@ -18,20 +20,21 @@ const LoginDialog: React.FC<LoginDialogProps> = ({ open, onOpenChange, onRegiste
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const { login } = useAuth();
+  const isMobile = useIsMobile();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!email.trim() || !password.trim()) {
       toast.error('Please fill in all fields');
       return;
     }
-    
+
     setIsLoading(true);
-    
+
     try {
       const success = await login(email.trim(), password);
-      
+
       if (success) {
         toast.success('Logged in successfully');
         onOpenChange(false);
@@ -47,13 +50,23 @@ const LoginDialog: React.FC<LoginDialogProps> = ({ open, onOpenChange, onRegiste
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-md">
-        <DialogHeader>
-          <DialogTitle>Log in to your account</DialogTitle>
+      <DialogContent className={cn(
+        "sm:max-w-md p-0 gap-0 shadow-xl border-none bg-gradient-to-b from-background to-muted/20",
+        "duration-200 transition-all",
+        isMobile && "w-[95%] rounded-2xl"
+      )}>
+        <DialogHeader className="p-6 pb-2">
+          <DialogTitle className={cn(
+            "text-xl font-semibold tracking-tight",
+            isMobile && "text-lg"
+          )}>Log in to your account</DialogTitle>
         </DialogHeader>
-        <form onSubmit={handleSubmit} className="space-y-4 pt-4">
+        <form onSubmit={handleSubmit} className="space-y-4 p-6 pt-2">
           <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
+            <Label htmlFor="email" className={cn(
+              "text-sm font-medium text-muted-foreground",
+              isMobile && "text-xs"
+            )}>Email</Label>
             <Input
               id="email"
               type="email"
@@ -61,29 +74,54 @@ const LoginDialog: React.FC<LoginDialogProps> = ({ open, onOpenChange, onRegiste
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"
-              className="transition-all duration-200"
+              className={cn(
+                "border-muted-foreground/20 bg-background/50 backdrop-blur-sm",
+                "transition-all duration-200 focus:ring-offset-0 rounded-xl",
+                isMobile && "h-9 text-sm"
+              )}
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="password">Password</Label>
+            <Label htmlFor="password" className={cn(
+              "text-sm font-medium text-muted-foreground",
+              isMobile && "text-xs"
+            )}>Password</Label>
             <Input
               id="password"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Enter your password"
-              className="transition-all duration-200"
+              className={cn(
+                "border-muted-foreground/20 bg-background/50 backdrop-blur-sm",
+                "transition-all duration-200 focus:ring-offset-0 rounded-xl",
+                isMobile && "h-9 text-sm"
+              )}
             />
           </div>
-          <div className="flex flex-col space-y-2 pt-2">
-            <Button type="submit" disabled={isLoading}>
+          <div className="flex flex-col space-y-2 pt-4">
+            <Button
+              type="submit"
+              disabled={isLoading}
+              className={cn(
+                "rounded-xl bg-gradient-to-r from-primary to-primary/80",
+                "hover:opacity-90 transition-opacity",
+                isMobile && "h-9 text-sm"
+              )}
+            >
               {isLoading ? 'Logging in...' : 'Log in'}
             </Button>
-            <div className="text-center text-sm text-muted-foreground pt-2">
+            <div className={cn(
+              "text-center text-sm text-muted-foreground pt-2",
+              isMobile && "text-xs"
+            )}>
               Don't have an account?{' '}
-              <Button 
-                variant="link" 
-                className="p-0 h-auto text-primary" 
+              <Button
+                variant="link"
+                className={cn(
+                  "p-0 h-auto text-primary",
+                  isMobile && "text-xs"
+                )}
                 onClick={(e) => {
                   e.preventDefault();
                   onRegisterClick();
