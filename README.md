@@ -51,5 +51,3 @@ The application will be available at `http://localhost:8081`
 3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
-
->>>>>>> fad871e8ee4cacfbc687402b607b57fa143dbbe9
