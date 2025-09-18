@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Task, Column, TaskStatus } from '@/types/kanban';
+import { Task, Column, TaskStatus, IssuePriority, IssueType } from '@/types/kanban';
 import { getTasksFromLocalStorage, saveTasksToLocalStorage, clearDemoTasks } from '@/utils/localStorage';
 import { v4 as uuidv4 } from 'uuid';
 import TaskCard from './TaskCard';
@@ -208,7 +208,16 @@ const KanbanBoard: React.FC<KanbanBoardProps> = ({ searchQuery: externalSearchQu
     setFilteredTasks(result);
   }, [tasks, filters, searchQuery]);
 
-  const handleCreateTask = (title: string, description: string, status: TaskStatus, tags?: string[]) => {
+  const handleCreateTask = (
+    title: string, 
+    description: string, 
+    status: TaskStatus, 
+    tags?: string[], 
+    priority?: IssuePriority, 
+    issueType?: IssueType, 
+    dueDate?: string, 
+    assignees?: string[]
+  ) => {
     const newTask: Task = {
       id: uuidv4(),
       title,
@@ -216,11 +225,14 @@ const KanbanBoard: React.FC<KanbanBoardProps> = ({ searchQuery: externalSearchQu
       status,
       createdAt: Date.now(),
       tags,
-      assignees: user ? [user.id] : undefined
+      priority,
+      issueType,
+      dueDate,
+      assignees: assignees && assignees.length > 0 ? assignees : (user ? [user.id] : undefined)
     };
 
     setTasks((prevTasks) => [...prevTasks, newTask]);
-    toast.success('Task created successfully');
+    toast.success('Issue created successfully');
   };
 
   const handleUpdateTask = (updatedTask: Task) => {
@@ -359,7 +371,7 @@ const KanbanBoard: React.FC<KanbanBoardProps> = ({ searchQuery: externalSearchQu
             className="gap-1 sm:gap-2 text-xs sm:text-sm"
           >
             <Plus className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-            {isMobile ? "Create" : "Create Task"}
+            {isMobile ? "Create" : "Create Issue"}
           </Button>
         </div>
       </div>
