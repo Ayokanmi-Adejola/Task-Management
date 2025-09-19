@@ -1,6 +1,10 @@
 
 export type TaskStatus = 'todo' | 'doing' | 'done';
 
+export type IssuePriority = 'low' | 'medium' | 'high' | 'critical';
+
+export type IssueType = 'bug' | 'feature' | 'enhancement' | 'documentation';
+
 export interface Task {
   id: string;
   title: string;
@@ -12,6 +16,8 @@ export interface Task {
   assignees?: string[];
   comments?: number;
   attachments?: number;
+  priority?: IssuePriority;
+  issueType?: IssueType;
 }
 
 export interface Column {
