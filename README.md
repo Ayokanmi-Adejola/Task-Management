@@ -9,7 +9,6 @@
 
 A modern, responsive Kanban board application built with React and TypeScript, featuring a beautiful UI powered by shadcn/ui and Tailwind CSS. Perfect for teams and individuals to manage tasks efficiently with drag-and-drop functionality, real-time updates, and responsive design.
 
-[🚀 Live Demo](https://ayokanmi-adejola.github.io/Task-Management) • [📚 Documentation](#-documentation) • [🐛 Report Bug](https://github.com/Ayokanmi-Adejola/Task-Management/issues) • [✨ Request Feature](https://github.com/Ayokanmi-Adejola/Task-Management/issues)
 
 </div>
 
