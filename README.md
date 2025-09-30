@@ -269,61 +269,18 @@ jobs:
 
 ## 🤝 Contributing
 
-We welcome contributions from the community! Please follow these steps:
+We welcome contributions from the community! Whether you're fixing bugs, adding features, or improving documentation, your help is appreciated.
 
-### Development Workflow
+### Quick Start
 
-1. **Fork the repository**
-```bash
-git clone https://github.com/your-username/Task-Management.git
-cd Task-Management
-```
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Make your changes
+4. Test your changes (`npm run lint && npm run build`)
+5. Commit using conventional commits (`git commit -m "feat: add amazing feature"`)
+6. Push to your fork and open a Pull Request
 
-2. **Create a feature branch**
-```bash
-git checkout -b feature/amazing-feature
-```
-
-3. **Make your changes**
-   - Follow the existing code style and conventions
-   - Add TypeScript types for new components
-   - Update documentation if needed
-
-4. **Test your changes**
-```bash
-npm run lint        # Check code quality
-npm run build       # Ensure build works
-```
-
-5. **Commit your changes**
-```bash
-git commit -m "feat: add amazing feature"
-```
-
-6. **Push to your fork**
-```bash
-git push origin feature/amazing-feature
-```
-
-7. **Open a Pull Request**
-   - Provide a clear description of changes
-   - Link any related issues
-   - Add screenshots for UI changes
-
-### Contribution Guidelines
-
-- **Code Style**: Follow the existing TypeScript and React patterns
-- **Commits**: Use conventional commit messages (feat, fix, docs, style, refactor, test, chore)
-- **Documentation**: Update README.md for significant changes
-- **Testing**: Ensure your changes don't break existing functionality
-
-### Reporting Issues
-
-When reporting bugs, please include:
-- Steps to reproduce the issue
-- Expected vs actual behavior
-- Screenshots (if applicable)
-- Browser and device information
+For detailed contribution guidelines, code style, commit conventions, and development setup, please read our [**CONTRIBUTING.md**](CONTRIBUTING.md) file.
 
 ## 📄 License
 
