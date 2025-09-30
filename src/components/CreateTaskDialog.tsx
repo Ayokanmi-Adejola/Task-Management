@@ -136,7 +136,9 @@ const CreateTaskDialog: React.FC<CreateTaskDialogProps> = ({ status, open, onOpe
             <Label htmlFor="title" className={cn(
               "text-sm font-medium text-muted-foreground",
               isMobile && "text-xs"
-            )}>Title</Label>
+            )}>
+              Title <span className="text-red-500">*</span>
+            </Label>
             <Input
               id="title"
               autoFocus
