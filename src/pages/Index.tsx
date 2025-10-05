@@ -266,7 +266,7 @@ const Index = () => {
 
       <main className="flex-1 px-3 sm:px-6 py-4 sm:py-6 overflow-hidden">
         <div className="max-w-7xl mx-auto h-full">
-          <KanbanBoard searchQuery={searchQuery} />
+          <KanbanBoard searchQuery={searchQuery} onRequestLogin={handleLoginClick} />
         </div>
       </main>
 
