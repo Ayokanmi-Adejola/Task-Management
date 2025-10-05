@@ -112,9 +112,10 @@ const DEMO_TASKS: Task[] = [
 
 interface KanbanBoardProps {
   searchQuery?: string;
+  onRequestLogin?: () => void;
 }
 
-const KanbanBoard: React.FC<KanbanBoardProps> = ({ searchQuery: externalSearchQuery }) => {
+const KanbanBoard: React.FC<KanbanBoardProps> = ({ searchQuery: externalSearchQuery, onRequestLogin }) => {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [filteredTasks, setFilteredTasks] = useState<Task[]>([]);
   const [editingTask, setEditingTask] = useState<Task | null>(null);
@@ -301,7 +302,11 @@ const KanbanBoard: React.FC<KanbanBoardProps> = ({ searchQuery: externalSearchQu
 
   const openCreateTaskDialog = (status: TaskStatus) => {
     if (!isAuthenticated) {
-      toast.error('Please log in to create tasks');
+      if (onRequestLogin) {
+        onRequestLogin();
+      } else {
+        toast.error('Please log in to create tasks');
+      }
       return;
     }
     setCreateInColumn(status);
@@ -362,7 +367,11 @@ const KanbanBoard: React.FC<KanbanBoardProps> = ({ searchQuery: externalSearchQu
             size={isMobile ? "sm" : "default"}
             onClick={() => {
               if (!isAuthenticated) {
-                toast.error('Please log in to create tasks');
+                if (onRequestLogin) {
+                  onRequestLogin();
+                } else {
+                  toast.error('Please log in to create tasks');
+                }
                 return;
               }
               setCreateInColumn('todo');
