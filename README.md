@@ -325,16 +325,6 @@ When reporting bugs, please include:
 - Screenshots (if applicable)
 - Browser and device information
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 👨‍💻 Author
-
-**Ayokanmi Adejola**
-- GitHub: [@Ayokanmi-Adejola](https://github.com/Ayokanmi-Adejola)
-- LinkedIn: [Ayokanmi Adejola](https://linkedin.com/in/ayokanmi-adejola)
-
 ## 🙏 Acknowledgments
 
 - [shadcn/ui](https://ui.shadcn.com/) for the beautiful component library
