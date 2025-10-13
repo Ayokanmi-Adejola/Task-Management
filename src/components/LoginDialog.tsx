@@ -51,16 +51,16 @@ const LoginDialog: React.FC<LoginDialogProps> = ({ open, onOpenChange, onRegiste
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className={cn(
         "sm:max-w-md p-0 gap-0 shadow-xl border-none bg-gradient-to-b from-background to-muted/20",
-        "duration-200 transition-all",
-        isMobile && "w-[95%] rounded-2xl"
+        "duration-200 transition-all max-h-[85vh] overflow-y-auto",
+        isMobile && "w-[95%] max-w-[95%] rounded-2xl p-0"
       )}>
-        <DialogHeader className="p-6 pb-2">
+        <DialogHeader className="p-6 pb-2 sm:p-6 sm:pb-2">
           <DialogTitle className={cn(
             "text-xl font-semibold tracking-tight",
             isMobile && "text-lg"
           )}>Log in to your account</DialogTitle>
         </DialogHeader>
-        <form onSubmit={handleSubmit} className="space-y-4 p-6 pt-2">
+        <form onSubmit={handleSubmit} className="space-y-4 p-4 sm:p-6 pt-2">
           <div className="space-y-2">
             <Label htmlFor="email" className={cn(
               "text-sm font-medium text-muted-foreground",

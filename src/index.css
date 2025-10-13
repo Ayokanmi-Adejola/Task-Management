@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
 @layer base {
   :root {
     --background: 0 0% 98%;
