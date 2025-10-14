@@ -70,16 +70,17 @@ const FilterTasksDialog: React.FC<FilterTasksDialogProps> = ({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className={cn(
         "sm:max-w-md p-0 gap-0 shadow-xl border-none bg-gradient-to-b from-background to-muted/20",
-        "duration-200 transition-all",
+        "duration-200 transition-all max-h-[85vh] overflow-y-auto",
+        isMobile && "w-[95%] max-w-[95%] rounded-2xl p-0"
       )}>
-        <DialogHeader className="p-6 pb-2">
+        <DialogHeader className="p-6 pb-2 sm:p-6 sm:pb-2">
           <DialogTitle className={cn(
             "text-xl font-semibold tracking-tight",
             isMobile && "text-lg"
           )}>Filter Tasks</DialogTitle>
         </DialogHeader>
 
-        <div className="p-6 pt-2">
+        <div className="p-4 sm:p-6 pt-2">
           <Tabs value={activeTab} onValueChange={setActiveTab}>
             <TabsList className="grid w-full grid-cols-2">
               <TabsTrigger value="tags" className={cn(

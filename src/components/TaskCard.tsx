@@ -34,17 +34,17 @@ const TaskCard = forwardRef<HTMLDivElement, TaskCardProps>(
         {...props}
       >
         <div className="flex justify-between items-start mb-1.5 sm:mb-2">
-          <h3 className="font-medium text-xs sm:text-sm leading-tight line-clamp-2">{task.title}</h3>
+          <h3 className="font-medium text-xs sm:text-sm leading-tight line-clamp-2 flex-1 pr-2">{task.title}</h3>
           <Button
             variant="ghost"
             size="icon"
-            className="h-6 w-6 sm:h-7 sm:w-7 rounded-full -mt-1 -mr-1 text-muted-foreground"
+            className="h-8 w-8 sm:h-7 sm:w-7 rounded-full -mt-1 -mr-1 text-muted-foreground flex-shrink-0"
             onClick={(e) => {
               e.stopPropagation();
               onEdit(task);
             }}
           >
-            <MoreHorizontal className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
+            <MoreHorizontal className="h-4 w-4 sm:h-3.5 sm:w-3.5" />
             <span className="sr-only">Options</span>
           </Button>
         </div>

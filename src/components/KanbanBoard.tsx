@@ -412,7 +412,7 @@ const KanbanBoard: React.FC<KanbanBoardProps> = ({ searchQuery: externalSearchQu
         </div>
       )}
 
-      <div className="flex-1 flex flex-col md:flex-row gap-4 sm:gap-6 overflow-hidden">
+      <div className="flex-1 flex flex-col md:flex-row gap-4 sm:gap-6 overflow-hidden w-full">
         {COLUMNS.map((column, index) => {
           const columnTasks = getColumnTasks(column.id);
 
@@ -420,7 +420,7 @@ const KanbanBoard: React.FC<KanbanBoardProps> = ({ searchQuery: externalSearchQu
             <div
               key={column.id}
               className={cn(
-                "flex-1 min-w-[280px] flex flex-col max-h-full",
+                "flex-1 min-w-0 flex flex-col max-h-full",
                 // On mobile, only show the active column
                 isMobile && index !== activeColumnIndex && "hidden"
               )}

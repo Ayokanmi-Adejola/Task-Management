@@ -264,30 +264,30 @@ const Index = () => {
         )}
       </header>
 
-      <main className="flex-1 px-3 sm:px-6 py-4 sm:py-6 overflow-hidden">
-        <div className="max-w-7xl mx-auto h-full">
+      <main className="flex-1 px-3 sm:px-6 py-4 sm:py-6 overflow-hidden w-full">
+        <div className="max-w-7xl mx-auto h-full w-full">
           <KanbanBoard searchQuery={searchQuery} onRequestLogin={handleLoginClick} />
         </div>
       </main>
 
       <footer className="mt-auto border-t border-border/70 py-3 sm:py-4 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-0">
-          <div className="text-xs sm:text-sm text-muted-foreground order-2 sm:order-1 flex items-center gap-3">
+          <div className="text-xs sm:text-sm text-muted-foreground order-2 sm:order-1 flex items-center gap-2 sm:gap-3">
             <img 
               src="Ayo1.png" 
               alt="Ayokanmi Adejola" 
-              className="h-12 w-12 sm:h-16 sm:w-16 object-cover rounded-full ring-2 ring-border shadow-sm hover:ring-primary transition-all duration-300"
+              className="h-10 w-10 sm:h-12 sm:w-12 md:h-16 md:w-16 object-cover rounded-full ring-2 ring-border shadow-sm hover:ring-primary transition-all duration-300"
               loading="lazy"
             />
-            <span className="font-medium">Created by {'Ayokanmi Adejola'}</span>
+            <span className="font-medium text-xs sm:text-sm">Created by {'Ayokanmi Adejola'}</span>
           </div>
           <div className="text-xs sm:text-sm order-1 sm:order-2">
             {!isAuthenticated && (
-              <span>
+              <span className="flex items-center gap-1">
                 <Button variant="link" className="p-0 h-auto text-xs sm:text-sm" onClick={handleLoginClick}>
                   Log in
                 </Button>
-                {' '} or {' '}
+                <span className="text-muted-foreground">or</span>
                 <Button variant="link" className="p-0 h-auto text-xs sm:text-sm" onClick={handleRegisterClick}>
                   Register
                 </Button>
