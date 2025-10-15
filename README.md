@@ -337,13 +337,3 @@ When reporting bugs, please include:
 ![GitHub forks](https://img.shields.io/github/forks/Ayokanmi-Adejola/Task-Management?style=social)
 ![GitHub issues](https://img.shields.io/github/issues/Ayokanmi-Adejola/Task-Management)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/Ayokanmi-Adejola/Task-Management)
-
----
-
-<div align="center">
-
-**[⬆ Back to Top](#-kanban-task-management)**
-
-Made with ❤️ and ☕ by [Ayokanmi Adejola](https://github.com/Ayokanmi-Adejola)
-
-</div>
