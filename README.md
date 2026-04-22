@@ -321,14 +321,6 @@ When reporting bugs, please include:
 - Screenshots (if applicable)
 - Browser and device information
 
-## 🙏 Acknowledgments
-
-- [shadcn/ui](https://ui.shadcn.com/) for the beautiful component library
-- [Radix UI](https://www.radix-ui.com/) for accessible primitives
-- [Tailwind CSS](https://tailwindcss.com/) for the utility-first CSS framework
-- [Lucide](https://lucide.dev/) for the comprehensive icon library
-- The React and TypeScript communities for continuous innovation
-
 ## 📊 Project Stats
 
 ![GitHub stars](https://img.shields.io/github/stars/Ayokanmi-Adejola/Task-Management?style=social)
