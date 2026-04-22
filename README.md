@@ -16,8 +16,6 @@ A modern, responsive Kanban board application built with React and TypeScript, f
 | ------- | ------ | ------ |
 | <img width="1920" height="1237" alt="Desktop view showing full Kanban board with three columns" src="https://github.com/user-attachments/assets/3ddf2507-fb6f-47df-9989-09ac630f845d" /> | <img width="768" height="618" alt="Tablet view with responsive layout" src="https://github.com/user-attachments/assets/504f0b16-f104-4173-9798-37ef3553d6d9" /> | <img width="351" height="892" alt="Mobile view with optimized navigation" src="https://github.com/user-attachments/assets/d07ac3c8-ea4a-4c8f-be9b-37e34995027a" /> |
 
-## ✨ Features
-
 ### 🎯 Core Functionality
 - **Drag & Drop Interface**: Intuitive task management with smooth drag-and-drop between columns
 - **Real-time Updates**: Instant synchronization of task changes across the board
